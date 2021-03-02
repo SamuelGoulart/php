@@ -8,7 +8,7 @@ function calcularFrete($pedagios, $distancia)
   return $custoPedagio + $custoDistancia;
 }
 
-// Atividade da Pasta da fullbanck
+// Empresa fullbanck
 function salario_com_aumento($salario_atual)
 {
   if ($salario_atual <= 5000) {
@@ -23,7 +23,7 @@ function salario_com_aumento($salario_atual)
 }
 
 
-//Atividade da XDinvestimentos
+//Empresa XDinvestimentos
 function conversao($valorconversao, $moeda_para_conversao)
 {
 
@@ -31,11 +31,23 @@ function conversao($valorconversao, $moeda_para_conversao)
 
     $valorconvertido = $valorconversao * 6.57;
     return $valorconvertido;
-    
   } else {
-       
+
     $valorconvertido = $valorconversao * 5.41;
     return $valorconvertido;
+  }
+}
 
+
+// Empresa seneletro
+function valor_a_pagar($quilowatts_hora)
+{
+
+  if ($quilowatts_hora > 120) {
+    $valor_a_pagar = $quilowatts_hora * 0.42;
+    return $valor_a_pagar;
+  } else {
+    $valor_a_pagar = $quilowatts_hora * 0.32;
+    return $valor_a_pagar;
   }
 }

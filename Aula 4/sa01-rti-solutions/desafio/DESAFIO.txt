@@ -1,0 +1,4 @@
+Contrua um programa que leia 5 numeros do usuário.
+Os números devem ser enviados ao backend através do método POST.
+O programa deve somar os números digitados e exibir o resultado.
+Para somar os números, utilize uma estrutura de repetição.

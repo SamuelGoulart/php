@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="../styles-global.css">
 <?php
 
     if(!isset($_GET["nome"])

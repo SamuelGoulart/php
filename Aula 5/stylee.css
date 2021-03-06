@@ -1,0 +1,41 @@
+
+form{
+    width: 80%;
+    float: left;
+    margin-top: 5rem;
+    margin-left: 40%;
+}
+
+.form-control{
+     width: 17rem;
+}
+
+label{
+    display: unset !important;
+}
+
+legend{
+    width: 100% !important;
+}
+
+.btn{
+   width: 50%;
+
+} 
+
+#form{
+    width: 50%;
+    height: 100vh;
+    float: left;
+}
+#resultado{
+    width: 50%;
+    height: 100vh;
+    float: right;
+    font-size: 10rem;
+    padding-top: 7rem;
+
+
+}
+
+

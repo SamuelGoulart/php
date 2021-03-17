@@ -1,4 +1,36 @@
+<?php
 
+$primeiro_numero = isset($_POST['primeiro-numero']) ? $_POST['primeiro-numero'] : NULL;
+$segundo_numero = isset($_POST['segundo-numero']) ? $_POST['segundo-numero'] : NULL;
+$operacao_matematica = isset($_POST['operacao-matematica']) ? $_POST['operacao-matematica'] : NULL;
+
+ 
+
+
+$resultado_final =  resultado_final($operacao_matematica, $primeiro_numero, $segundo_numero);
+
+function resultado_final($operacao_matematica,  $primeiro_numero,  $segundo_numero)
+{
+    if ($operacao_matematica == "+") {
+
+        $resultado_final = $primeiro_numero + $segundo_numero;
+        return $resultado_final;
+    } else if ($operacao_matematica == "-") {
+
+        $resultado_final = $primeiro_numero - $segundo_numero;
+        return $resultado_final;
+    } else if ($operacao_matematica == "*") {
+
+        $resultado_final = $primeiro_numero * $segundo_numero;
+        return $resultado_final;
+    } else if ($operacao_matematica == "/") {
+
+        $resultado_final = $primeiro_numero / $segundo_numero;
+        return $resultado_final;
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -12,7 +44,7 @@
 </head>
 
 <body>
-    <section id="form" >
+    <section id="form">
         <form action="calcula.php" method="POST">
             <div>
                 <h1>Calculadora</h1>
@@ -64,7 +96,11 @@
     </section>
     <section id="resultado">
         <h3>Resultado:</h3>
-        <p> 0</p>
+        <h4 style="float: left;"><?= $primeiro_numero . ' ' ?></h4>
+        <h4 style="float: left;"><?= ' ' . $operacao_matematica ?></h4>
+        <h4 style="float: left;"><?= $segundo_numero . ' =' ?></h4>
+
+        <p> <?= $resultado_final; ?></p>
     </section>
 
 </body>

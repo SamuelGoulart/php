@@ -4,15 +4,20 @@ $valor_1 = $_POST["valor-1"];
 $valor_2 = $_POST["valor-2"];
 $qual_valor_mudar = $_POST["qual-valor-mudar"];
 
-$input = [$valor_1, $valor_2];
-$key = array_search($qual_valor_mudar, $input);
+$doisparametros = [$valor_1, $valor_2];
 
-function deletaElemento($input, $key)
+function deletaElemento($doisparametros, $valor_1, $valor_2, $qual_valor_mudar)
 {
-    if ($key !== false) {
-        unset($input[$key]);
-        $arrayComNovoValor =  $input;
-        return $arrayComNovoValor;
+      
+    if($valor_1 == $qual_valor_mudar){
+        unset($doisparametros[0]);
+        $arrayComValorDeletado =  $doisparametros;
+        return $arrayComValorDeletado;
+
+    }else if($valor_2 == $qual_valor_mudar){
+        unset($doisparametros[1]);
+        $arrayComValorDeletado =  $doisparametros;
+        return $arrayComValorDeletado;
     } else {
 
         return  "Valor inexistente, no array ";
@@ -20,7 +25,7 @@ function deletaElemento($input, $key)
 }
 
 
-$resultado = deletaElemento($input, $key);
+$resultado = deletaElemento($doisparametros, $valor_1, $valor_2, $qual_valor_mudar);
 
 
 ?>
@@ -44,11 +49,10 @@ $resultado = deletaElemento($input, $key);
             echo "Valor inexistente, no array";
         } else {
             echo " <h2>Como o valor foi preenchido inicialmente no array:</h2>";
-            echo print_r($input);
+            echo print_r($doisparametros);
             echo "<h2>Como ficou após a mudança:</h2> ";
             print_r($resultado);
         }
-
         ?>
     </form>
 </body>

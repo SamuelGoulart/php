@@ -4,17 +4,26 @@ $valor1 = $_POST["valor1"];
 $valor2 = $_POST["valor2"];
 $valor3 = $_POST["valor3"];
 
-$valores = [$valor1, $valor2, $valor3];
+$vetorQualquer = [$valor1, $valor2, $valor3];
 
-$invertido = inverteValores($valores);
-function inverteValores($valores)
-{
+function inverteVetor(array $vetor){
+    $vetorInvertido = [];
 
-    $invertido = array_reverse($valores);
-    return $invertido;
+    for ($i= (count($vetor) - 1 ); $i >= 0; $i--) { 
+        $vetorInvertido[] = $vetor[$i];
+    }
+
+    return $vetorInvertido;
 }
 
+
+
+$vetorInvertido = inverteVetor($vetorQualquer);
+
+
+
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -29,13 +38,13 @@ function inverteValores($valores)
 <body>
     <form action="inverte_valores.php" method="post">
         <div class="input-group">
-            <label for=""> Os valores inseridos </label>
+            <h3> Os valores inseridos </h3>
             <input type="text" value="<?php echo "1º = ".$valor1." 2º = ".$valor2." 3º = ".$valor3; ?>" readonly>
 
         </div>
         <div class="input-group">
-            <label for=""> Os valores invertido </label>
-            <input type="text" value="<?php echo $invertido[0]." ".$invertido[1]." ".$invertido[2]; ?>" readonly>
+            <h3> Os valores invertido </h3>
+            <input type="text" value="<?php echo "1° = ".$vetorInvertido[0]." 2º ".$vetorInvertido[1]." 3° ".$vetorInvertido[2];  ?>" readonly>
 
         </div>
     </form>

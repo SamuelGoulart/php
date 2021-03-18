@@ -9,7 +9,7 @@ $doisparametros = [$valor_1, $valor_2];
 function deletaElemento($doisparametros, $valor_1, $valor_2, $qual_valor_mudar)
 {
       
-    if($valor_1 == $qual_valor_mudar){
+    if($valor_1 == $qual_valor_mudar ){
         unset($doisparametros[0]);
         $arrayComValorDeletado =  $doisparametros;
         return $arrayComValorDeletado;

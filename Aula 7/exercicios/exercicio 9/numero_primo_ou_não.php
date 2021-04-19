@@ -1,6 +1,6 @@
 
  <?php
-    $numero = 100;
+    $numero = 1;
 
     function primoOuNao($numero)
     {

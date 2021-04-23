@@ -12,6 +12,7 @@ body {
   flex-direction: column;
 }
 .content {
+  position: relative;
   margin: 20px 0px;
   padding: 30px;
   display: flex;
@@ -32,7 +33,7 @@ body {
 
   overflow: auto;
 }
-.tarefa {
+.tarefa  {
   width: 100%;
   background-color: #555;
   padding: 15px;
@@ -47,13 +48,13 @@ body {
 .tarefa:hover{
   box-shadow: 0px 0px 20px #555;
 }
-.tarefa span{
+.tarefa form{
   position: absolute;
   right: 15px;
   font-size: 20px;
   transition: 0.2s;
 }
-.tarefa span:hover{
+.tarefa form:hover{
   font-size: 25px;
 }
 form {
@@ -61,6 +62,18 @@ form {
   flex-direction: column;
   gap: 10px;
 }
+.tarefa form button{
+  font-size: 20px;
+  border: 0px;
+  color: white;
+  font-weight: normal;
+  transition: 0.2s;
+  box-shadow: none;
+}
+.tarefa form button:hover{
+  font-size: 25px;
+}
+
 hr{
   width: 100%;
 }
@@ -75,6 +88,7 @@ button {
 }
 button:hover {
   box-shadow: 0px 2px 10px black;
+
 }
 h1 {
   font-size: 24px;
@@ -101,4 +115,17 @@ h1 em {
   font-size: 16px;
   border: 1px solid whitesmoke;
   border-radius: 4px;
+}
+
+.mensagem{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+
+  color: white;
+  background-color: #8b0000DD;
+  border: 2px dashed darkred ;
 }

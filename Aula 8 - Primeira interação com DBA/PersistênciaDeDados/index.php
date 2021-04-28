@@ -41,7 +41,13 @@ $resultado = mysqli_query($conexao, $query) or die(mysqli_error($conexao));
         <?php
         if (isset($_GET['mensagem'])) {
         ?>
-            <div class="mensagem">
+            <div class="mensagem" 
+             <?= 
+             $_GET["tipoMensagem"] == "sucesso"
+              ? "style='background-color: #006600;'"
+               : ""
+                ?> 
+            >
                 <?= $_GET["mensagem"] ?>
             </div>
         <?php
@@ -64,12 +70,17 @@ $resultado = mysqli_query($conexao, $query) or die(mysqli_error($conexao));
                 <div class="tarefa">
                     <?= $tarefa["descricao"] ?>
 
+                    <form id="form-editar" method="GET" action="editarTarefa.php">
+                        <input type="hidden" name="tarefaId" value="<?= $tarefa["id"] ?>">
+                        <button>&#128393;</button>
+                    </form>
+      
                     <form method="POST" action="taskActtions.php">
                         <input type="hidden" name="acao" value="deletar"></input>
                         <input type="hidden" name="tarefaId" value="<?= $tarefa["id"] ?>">
                         <button>&#128465;</button>
                     </form>
-
+      
                 </div>
             <?php
             }

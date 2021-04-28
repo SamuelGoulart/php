@@ -14,13 +14,14 @@ switch ($_POST["acao"]) {
 
             if ($resultadoInsert == false) {
                 $mesagem = "Erro ao criar a tarefa";
+                $tipoMesagem = "erro";
+
             }
             else{
                 $mesagem= "Ação conculida com sucesso";
-            }
+                $tipoMesagem = "sucesso";
 
-            //redirecionar para página de tarefas (index.php)
-            header("location: index.php?mensagem=$mesagem");
+            }
         }
         break;
 
@@ -33,18 +34,57 @@ switch ($_POST["acao"]) {
             //montar o sql de deleção com o id da tarefa
             $sqlDelete = "DELETE FROM tbl_tasks WHERE id=$tarefaId";
 
-            mysqli_query($conexao, $sqlDelete);
+             $resultadoDelete  = mysqli_query($conexao, $sqlDelete);
 
-            if ($resultadoInsert == false) {
+            if ($resultadoDelete == false) {
                 $mesagem = "Erro ao deletar a tarefa";
+                $tipoMesagem = "erro";   
+
             }
             else{
                 $mesagem= "Deletado com sucesso";
+                $tipoMesagem = "sucesso";
             }
 
-            //redirecionar para página de tarefas (index.php)
-            header("location: index.php?mensagem=$mesagem");
-
             break;
+
         }
+    case 'editar':
+
+        if (isset($_POST["tarefa"]) && isset($_POST["tarefaId"])) {
+         
+            //pegar a tarefa e a taredaId
+            $tarefa = $_POST["tarefa"];
+            $tarefaId = $_POST["tarefaId"];
+
+            //declarar a query update
+            $sqlUpadate = "UPDATE tbl_tasks SET descricao = '$tarefa' WHERE id = $tarefaId;";
+
+            //Executar a query
+            $resultado = mysqli_query($conexao, $sqlUpadate);
+
+            //Verificar se deu certo
+            if ($resultado) {
+
+                $mesagem = "Tarefa editada com sucesso!";
+                $tipoMesagem = "sucesso";
+
+
+            }else {
+
+                $mesagem = "Ops, erro ao editar a tarefa";
+                $tipoMesagem = "erro";
+
+            }
+        }
+            
+        break;
+
+        //Caso ele não cai em nenhum case
+        default:{
+            die ("Ops, ação inválida");
+        }
+
 }
+       //redirecionar para página de tarefas (index.php)
+        header("location: index.php?mensagem=$mesagem&tipoMensagem=$tipoMesagem");

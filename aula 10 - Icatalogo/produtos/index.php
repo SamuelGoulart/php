@@ -58,8 +58,8 @@ $resultado = mysqli_query($conexao, $query) or die(mysqli_error($conexao));
                             <img src="<?= $informacoesProduto["imagem"]  ?>" />
                         </figure>
                         <section>
-                            <span class="preco"><?= $informacoesProduto["valor"]  ?></span>
-                            <span class="parcelamento">ou em <em>10x <?= $informacoesProduto["valor"]  ?> sem juros</em></span>
+                            <span class="preco"><?= str_replace(".",",", $informacoesProduto["valor"]); ?></span>
+                            <span class="parcelamento">ou em <em>10x <?= str_replace(".",",", $informacoesProduto["valor"]); ?> sem juros</em></span>
 
                             <span class="descricao"><?= $informacoesProduto["descricao"]  ?></span>
                             <span class="categoria">

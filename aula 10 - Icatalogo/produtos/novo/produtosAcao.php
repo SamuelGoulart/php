@@ -1,10 +1,7 @@
 <?php
 
-
-
 require("../../database/conexao.php");
 
-     
 if (isset($_POST["descricao"]) && $_POST["descricao"] != "" 
    || isset($_POST["peso"]) && $_POST["peso"] != ""  
    || isset($_POST["quantidade"]) && $_POST["quantidade"] != ""  
@@ -24,26 +21,33 @@ if (isset($_POST["descricao"]) && $_POST["descricao"] != ""
 
    $valita_Se_E_Numero = [$quantidade, $valor, $desconto, $peso];
 
-function is_numerico(array $valita_Se_E_Numero){
-
-    foreach ($valita_Se_E_Numero as $valores){
-
-        if ( is_numeric($valores)  ) {
-            return true;
-
-        }else {
-            return false;
+    function is_numerico( array $valita_Se_E_Numero){
+        foreach($valita_Se_E_Numero as $valores){
+            if (is_numeric(str_replace(",",".", $valores))) {  
+                  
+            }else{
+                return false;
+            }   
         }
-
+      return true;
     }
-}
 
-$sqlInsert = " INSERT INTO  tbl_produto (descricao ,peso , quantidade, cor, tamanho, valor, desconto, imagem) VALUES ('$descricao','$peso','$quantidade','$cor','$tamanho','$valor','$desconto','$imagem') ";
+    $valorComPonto = str_replace(",",".", $valor);
+    $descontoComPonto = str_replace(",",".", $desconto);
+    $pesoComPonto = str_replace(",",".", $peso);
+
+    $sqlInsert = " INSERT INTO  tbl_produto (descricao ,peso , quantidade, cor, tamanho, valor, desconto, imagem) VALUES ('$descricao','$pesoComPonto','$quantidade','$cor','$tamanho','$valorComPonto','$descontoComPonto','$imagem') ";
   
-$resultadoInsert = mysqli_query($conexao, $sqlInsert);
+    $resultadoInsert = mysqli_query($conexao, $sqlInsert);
 
-    if (is_numerico($valita_Se_E_Numero) == true) {
+    if (is_numerico($valita_Se_E_Numero) == false) { 
 
+        $mesagem= "Os campos quantidades, valor, desconto e peso, aceitam somente valores numéricos";
+        $tipoMesagem = "erro";
+        header("location: index.php?mensagem=$mesagem&tipoMensagem=$tipoMesagem");
+        
+    }else{
+        
         if ($resultadoInsert == false) {
             $mesagem = "Erro ao inserir o produto";
             $tipoMesagem = "erro";
@@ -54,10 +58,6 @@ $resultadoInsert = mysqli_query($conexao, $sqlInsert);
         }
      
         header("location: ../index.php?mensagem=$mesagem&tipoMensagem=$tipoMesagem");
-
-    }else{
-        $mesagem= "Os campos quantidades, valor, desconto e peso, aceitam somente valores numéricos";
-        $tipoMesagem = "erro";
-        header("location: index.php?mensagem=$mesagem&tipoMensagem=$tipoMesagem");
+        echo "Ação conculida com sucesso";
     }
 }

@@ -1,6 +1,7 @@
 <?php
-
 session_start();
+
+require("../../database/verifica_login.php")
 
 ?>
 
@@ -12,17 +13,18 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../../styles-global.css" />
   <link rel="stylesheet" href="./novo.css" />
+  <link rel="stylesheet" href="../../componentes/header/header.css">
   <title>Administrar Produtos</title>
 </head>
 
 <body>
-  <header>
+  <header class="header" style="justify-content: center;" >
     <input type="search" placeholder="Pesquisar" />
   </header>
   <div class="content">
     <section class="produtos-container">
       <main>
-        <form class="form-produto" method="POST" action="produtosAcao.php">
+        <form class="form-produto" method="POST" action="./produtosAcao.php">
           <ul>
             <?php
             //verifica se existe erros na sessão do usuário

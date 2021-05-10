@@ -61,6 +61,11 @@ button {
   cursor: pointer;
 }
 
+header{
+  color:  var(--backgroundSecondary);
+
+}
+
 button:hover {
   box-shadow: 0px 2px 10px 5px var(--boxShadow);
   border: 2px solid var(--accentSecondary);

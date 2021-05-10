@@ -24,7 +24,7 @@ switch ($_POST["acao"]) {
             if ($dadosLoginBanco["senha"] == $senha) {
 
                 $_SESSION["mensagemAutenticacao"] = "Seja bem vindo " . $dadosLoginBanco["nome"];
-                $_SESSION["login"] = "logado";
+                $_SESSION["usuario"] = $usuario;
             } else {
                 $_SESSION["mensagemAutenticacao"] = "Senha informada errada!";
             }
@@ -32,14 +32,14 @@ switch ($_POST["acao"]) {
 
             $_SESSION["mensagemAutenticacao"] = "O usuário " . $usuario . " não existe!";
         }
-        header("location: /web-backend/aula-12/produtos/index.php");
 
         //se estiver correta, salvar o id e o nome do usuário na sessão
 
-        // $_SESSION["id"] = $dadosLoginBanco["id"];
+        //$_SESSION["id"] = $dadosLoginBanco["id"];
 
 
         //redirecionar para tela de listagem de produtos
+        header("location: /web-backend/aula-12/produtos/index.php");
 
         break;
 

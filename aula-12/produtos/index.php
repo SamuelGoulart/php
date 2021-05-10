@@ -16,41 +16,24 @@ $resultado = mysqli_query($conexao, $query) or die(mysqli_error($conexao));
     <link rel="stylesheet" href="../styles-global.css" />
     <link rel="stylesheet" href="./produtos.css" />
     <title>Administrar Produtos</title>
-    <script>
-        setTimeout(() => {
-            document.querySelector(".mensagem").style.display = "none";
-        }, 4000 );
-    </script>
 </head>
 
 <body>
     <?php
     include("../componentes/header/header.php");
     ?>
-    
-    <?php
-        if (isset($_GET['mensagem'])) {
-        ?>
-            <div class="mensagem" 
-             <?= 
-             $_GET["tipoMensagem"] == "sucesso"
-              ? "style='background-color: #006600;'"
-               : ""
-                ?> 
-            >
-                <?= $_GET["mensagem"] ?>
-            </div>
-        <?php
-        }
-        ?>
     <div class="content">
         <section class="produtos-container">
             <?php
+            if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
+                $login = "<a href='./novo/' target='_blank'> <button>Novo Produto</button> </a>
+                       <button>Adicionar Categoria</button>";
+            }
             ?>
             <header>
-                <button onclick="javascript:window.location.href ='./novo/'">Novo Produto</button>
-                <button>Adicionar Categoria</button>
-            </header>
+                <?= $login ?>
+            </header> 
+
             <main>
                 <?php
                 while ($informacoesProduto = mysqli_fetch_array($resultado)) {
@@ -60,8 +43,8 @@ $resultado = mysqli_query($conexao, $query) or die(mysqli_error($conexao));
                             <img src="<?= $informacoesProduto["imagem"]  ?>" />
                         </figure>
                         <section>
-                            <span class="preco"><?= str_replace(".",",", $informacoesProduto["valor"]); ?></span>
-                            <span class="parcelamento">ou em <em>10x <?= str_replace(".",",", $informacoesProduto["valor"]); ?> sem juros</em></span>
+                            <span class="preco"><?= str_replace(".", ",", $informacoesProduto["valor"]); ?></span>
+                            <span class="parcelamento">ou em <em>10x <?= str_replace(".", ",", $informacoesProduto["valor"]); ?> sem juros</em></span>
 
                             <span class="descricao"><?= $informacoesProduto["descricao"]  ?></span>
                             <span class="categoria">
@@ -76,7 +59,6 @@ $resultado = mysqli_query($conexao, $query) or die(mysqli_error($conexao));
                 <?php
                 }
                 ?>
-
             </main>
         </section>
     </div>

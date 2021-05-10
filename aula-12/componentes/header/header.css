@@ -1,3 +1,6 @@
+a{
+  text-decoration: none;
+}
 .header {
   position: fixed;
   height: 60px;
@@ -86,10 +89,39 @@
   width: 250px;
   height: 50px;
   background-color:#006600;
-  margin-top: 6.6rem;
   color: #FFFFFF;
   text-indent: 15px;
-  z-index: 5;
+  position: fixed;
+  right: 0;
+  top: 60px;
 }
 
- 
+#mensagemAutenticacao.displayNome{
+  display: none;
+}
+
+[data-anime] {
+  opacity: 0;
+  transition: .3s;
+}
+
+[data-anime="right"] {
+  transform: translate3d(140px, 0, 0);
+}
+
+[data-anime].animate {
+  opacity: 1;
+  transform: translate3d(0px, 0px, 0px);
+}
+
+#btn-logout{
+  z-index: 1;
+  color: black;
+}
+
+#btn-logout:hover{
+  background-color: #FFFFFF;
+  margin-right: 1rem;
+  border: 0px;
+  color: var(--accentPrimary); 
+}

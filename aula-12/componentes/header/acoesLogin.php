@@ -10,6 +10,7 @@ switch ($_POST["acao"]) {
         //receber os campos do fomulário
         $usuario = $_POST["usuario"];
         $senha = $_POST["senha"];
+         
 
         //monstar o sql select na tabela tbl_adminitrador
         // $sqlLogin = " SELECT * FROM tbl_administrador WHERE usuario = '$usuario'; ";
@@ -44,6 +45,7 @@ switch ($_POST["acao"]) {
         break;
 
     case "logout":
+        
         session_destroy();
         header("location: /web-backend/aula-12/produtos/index.php");
 

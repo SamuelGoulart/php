@@ -26,12 +26,14 @@ $resultado = mysqli_query($conexao, $query) or die(mysqli_error($conexao));
         <section class="produtos-container">
             <?php
             if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
-                $login = "<a href='./novo/' target='_blank'> <button>Novo Produto</button> </a>
+                $btnNovoProduto_Adicionar = "<a href='./novo/' target='_blank'> <button>Novo Produto</button> </a>
                        <button>Adicionar Categoria</button>";
+            }else{
+                $btnNovoProduto_Adicionar = "";
             }
             ?>
             <header>
-                <?= $login ?>
+                <?= $btnNovoProduto_Adicionar ?>
             </header> 
 
             <main>

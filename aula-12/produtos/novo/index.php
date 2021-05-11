@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require("../../database/verifica_login.php")
+require("../../utils/verifica_login.php")
 
 ?>
 

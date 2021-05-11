@@ -3,10 +3,10 @@ session_start();
 
 if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
 
-    $login = "<button id='btn-logout'>Sair<button>";
+    $login = "<button id='btn-logout'>Sair</button>";
 } else {
 
-    $login = " <ul><a id='menu-admin'> Administrador</a></ul>";
+    $login = "<ul> <a id='menu-admin'> Administrador </a> </ul>";
 }
 
 ?>

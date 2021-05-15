@@ -85,43 +85,4 @@ a{
   font-size: 20px;
 }
 
-#mensagemAutenticacao {
-  width: 250px;
-  height: 50px;
-  background-color:#006600;
-  color: #FFFFFF;
-  text-indent: 15px;
-  position: fixed;
-  right: 0;
-  top: 60px;
-}
 
-#mensagemAutenticacao.displayNome{
-  display: none;
-}
-
-[data-anime] {
-  opacity: 0;
-  transition: .3s;
-}
-
-[data-anime="right"] {
-  transform: translate3d(140px, 0, 0);
-}
-
-[data-anime].animate {
-  opacity: 1;
-  transform: translate3d(0px, 0px, 0px);
-}
-
-#btn-logout{
-  z-index: 1;
-  color: black;
-}
-
-#btn-logout:hover{
-  background-color: #FFFFFF;
-  margin-right: 1rem;
-  border: 0px;
-  color: var(--accentPrimary); 
-}

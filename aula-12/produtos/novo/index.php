@@ -1,7 +1,13 @@
 <?php
 session_start();
 
-require("../../utils/verifica_login.php")
+require("../../utils/verifica_login.php");
+require("../../database/conexao.php");
+
+$query = " SELECT * FROM tbl_categoria ";
+
+$resultado = mysqli_query($conexao, $query) or die(mysqli_error($conexao));
+
 
 ?>
 
@@ -11,14 +17,15 @@ require("../../utils/verifica_login.php")
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../componentes/header/header.css" />
   <link rel="stylesheet" href="../../styles-global.css" />
   <link rel="stylesheet" href="./novo.css" />
-  <link rel="stylesheet" href="../../componentes/header/header.css">
+
   <title>Administrar Produtos</title>
 </head>
 
 <body>
-  <header class="header" style="justify-content: center;" >
+  <header class="header" style="justify-content: center;">
     <input type="search" placeholder="Pesquisar" />
   </header>
   <div class="content">
@@ -29,7 +36,7 @@ require("../../utils/verifica_login.php")
             <?php
             //verifica se existe erros na sessão do usuário
             if (isset($_SESSION["erros"])) {
-            // se existir perccore os erros exbindo na tela
+              // se existir perccore os erros exbindo na tela
               foreach ($_SESSION["erros"] as $erro) {
             ?>
                 <li><?= $erro ?></li>
@@ -69,6 +76,17 @@ require("../../utils/verifica_login.php")
           <div class="input-group">
             <label for="desconto">Desconto</label>
             <input type="text" id="desconto" name="desconto">
+          </div>
+          <div class="input-group">
+            <select name="categoria">
+              <option selected disabled>Selecione a categoria</option>
+              <?php while ($categorias = mysqli_fetch_array($resultado)) {
+              ?>
+                <option><?= $categorias["descricao"] ?></option>
+              <?php
+              }
+              ?>
+            </select>
           </div>
           <button onclick="javascript:window.location.href = '../'">Cancelar</button>
           <button>Salvar</button>

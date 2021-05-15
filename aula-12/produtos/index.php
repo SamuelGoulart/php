@@ -23,19 +23,40 @@ $resultado = mysqli_query($conexao, $query) or die(mysqli_error($conexao));
     include("../componentes/header/header.php");
     ?>
     <div class="content">
+        <div style="position: absolute; top: 0; right: 0;">
+            <?php
+            if (isset($_SESSION["erros"])) {
+            ?>
+                <p id="mensagem" data-anime="right"><?php echo $_SESSION["erros"][0]; ?></p>
+
+            <?php
+            }
+            if (isset($_SESSION["mensagem"])) {
+            ?>
+
+                <p id="mensagem" data-anime="right"><?php echo $_SESSION["mensagem"]; ?></p>
+
+            <?php
+            }
+            unset($_SESSION["erros"]);
+            unset($_SESSION["mensagem"]);
+            ?>
+        </div>
+
         <section class="produtos-container">
             <?php
-            if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
-                $btnNovoProduto_Adicionar = "<a href='./novo/' target='_blank'> <button>Novo Produto</button> </a>
-                       <button>Adicionar Categoria</button>";
-            }else{
-                $btnNovoProduto_Adicionar = "";
+            //autorização
+
+            //se o usuário estiver logado, mostrar os botões
+            if (isset($_SESSION["usuarioId"])) {
+            ?>
+                <header>
+                    <a href="./novo/" target='_blank'> <button>Novo Produto</button> </a>
+                    <a href="../categorias/" target='_blank'> <button>Adicionar Categoria</button> </a>
+                </header>
+            <?php
             }
             ?>
-            <header>
-                <?= $btnNovoProduto_Adicionar ?>
-            </header> 
-
             <main>
                 <?php
                 while ($informacoesProduto = mysqli_fetch_array($resultado)) {
@@ -67,6 +88,16 @@ $resultado = mysqli_query($conexao, $query) or die(mysqli_error($conexao));
     <footer>
         SENAI 2021 - Todos os direitos reservados
     </footer>
+
+    <script>
+        setTimeout(() => {
+            document.querySelector('#mensagem').classList.add('animate')
+        }, 500);
+
+        setTimeout(() => {
+            document.querySelector('#mensagem').classList.add('displayNome')
+        }, 5000);
+    </script>
 </body>
 
 </html>
